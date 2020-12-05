@@ -8,27 +8,14 @@ import org.springframework.stereotype.Component;
 @Component
 public class GsonUtils {
 
-    private Gson gson;
+    private static Gson gson;
 
     @Autowired
     public GsonUtils(Gson gson) {
         this.gson = gson;
     }
 
-    private GsonUtils() {
-    }
-
-    public static class SingletonHolder {
-
-        private static final GsonUtils instance = new GsonUtils();
-    }
-
-    public static GsonUtils getInstance() {
-
-        return SingletonHolder.instance;
-    }
-
-    public String convertToJsonStr(ResultDTO resultDTO) {
+    public static String convertToJsonStr(ResultDTO resultDTO) {
         try {
             return gson.toJson(resultDTO);
         } catch (Exception e) {

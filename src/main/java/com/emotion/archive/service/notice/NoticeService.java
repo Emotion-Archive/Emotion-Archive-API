@@ -5,6 +5,7 @@ public interface NoticeService {
     /**
      * 메일 전송
      */
+    boolean sendMail(String recvMail, String title, String content);
 
     /**
      * 공지사항 입력

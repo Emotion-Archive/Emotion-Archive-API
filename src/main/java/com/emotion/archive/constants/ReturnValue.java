@@ -12,7 +12,7 @@ public class ReturnValue {
         resultDTO.setId(id);
         resultDTO.setErrMsg(errMsg);
 
-        String result = GsonUtils.getInstance().convertToJsonStr(resultDTO);
+        String result = GsonUtils.convertToJsonStr(resultDTO);
         logger.error("errReturn : " + result);
         return result;
     }
@@ -22,7 +22,7 @@ public class ReturnValue {
         resultDTO.setResultYn(ConstValue.RESULT_Y);
         resultDTO.setId(id);
 
-        String result = GsonUtils.getInstance().convertToJsonStr(resultDTO);
+        String result = GsonUtils.convertToJsonStr(resultDTO);
         logger.info("successReturn : " + result);
         return result;
     }
