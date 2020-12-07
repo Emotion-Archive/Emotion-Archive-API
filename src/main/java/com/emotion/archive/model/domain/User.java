@@ -23,6 +23,9 @@ public class User {
     @Column(name = "PASSWORD")
     private String password;
 
+    @Column(name = "EMAIL")
+    private String email;
+
     // Default = ROLE_USER
     @Column(name = "ROLE")
     private String role;
