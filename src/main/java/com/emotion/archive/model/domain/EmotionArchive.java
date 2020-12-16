@@ -33,4 +33,7 @@ public class EmotionArchive {
     @Column(name = "MOD_DT")
     private String modDt;
 
+    @Column(name = "DELETE_YN")
+    private String delYn;
+
 }

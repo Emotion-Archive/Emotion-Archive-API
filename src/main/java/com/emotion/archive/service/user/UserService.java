@@ -2,6 +2,9 @@ package com.emotion.archive.service.user;
 
 import org.json.simple.JSONObject;
 
+/**
+ * 사용자 관리
+ */
 public interface UserService {
 
     /**

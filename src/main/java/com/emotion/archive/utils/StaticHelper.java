@@ -46,8 +46,29 @@ public class StaticHelper {
         cal.setTime(new Date());
         cal.add(gubun, +day);
         String regTim = new SimpleDateFormat(format).format(cal.getTime());
-
         return regTim;
+    }
+
+    public static String getNowTimeStrByFormat(String format) {
+        try {
+            return new SimpleDateFormat(format).format(new Date());
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public static String getEndOrMonth(String yyyyMM) {
+        try {
+            int yyyy = Integer.parseInt(yyyyMM.substring(0, 4));
+            int MM = Integer.parseInt(yyyyMM.substring(4));
+
+            Calendar cal = Calendar.getInstance();
+            cal.set(yyyy, MM - 1, 1);
+
+            return yyyyMM + cal.getActualMaximum(Calendar.DAY_OF_MONTH);
+        } catch (Exception e) {
+            return null;
+        }
     }
 
 }

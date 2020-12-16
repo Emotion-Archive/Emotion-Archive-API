@@ -23,4 +23,8 @@ public class ConstValue {
     // 암호화 키
     public static final String AES_SECRET_KEY       = "emotionarchiveemotionarc";
 
+    // 검색 필터
+    public static final int FILTER_CALENDAR         = 1;    // 달력 (월별) 조회
+    public static final int FILTER_ARCHIVE          = 2;    // 보관소 별 조회
+
 }
