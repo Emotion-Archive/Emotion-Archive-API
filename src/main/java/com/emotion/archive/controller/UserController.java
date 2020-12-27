@@ -9,6 +9,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * 사용자 관리 API
+ */
 @RestController
 @RequestMapping(value = "/user")
 public class UserController extends LoggerUtils {

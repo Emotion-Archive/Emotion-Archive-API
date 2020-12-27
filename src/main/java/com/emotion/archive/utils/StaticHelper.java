@@ -25,14 +25,6 @@ public class StaticHelper {
         }
     }
 
-    public static int getJsonValue(JSONObject jsonObject, String key, int defaultValue) {
-        try {
-            return (Integer) jsonObject.get(key);
-        } catch (Exception e) {
-            return defaultValue;
-        }
-    }
-
     public static Long getJsonValue(JSONObject jsonObject, String key) {
         try {
             return (Long) jsonObject.get(key);
@@ -49,6 +41,14 @@ public class StaticHelper {
         return regTim;
     }
 
+    public static String getTimeStrByFormat(String format, Date date) {
+        try {
+            return new SimpleDateFormat(format).format(date);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
     public static String getNowTimeStrByFormat(String format) {
         try {
             return new SimpleDateFormat(format).format(new Date());
@@ -57,7 +57,7 @@ public class StaticHelper {
         }
     }
 
-    public static String getEndOrMonth(String yyyyMM) {
+    public static String getEndOfMonth(String yyyyMM) {
         try {
             int yyyy = Integer.parseInt(yyyyMM.substring(0, 4));
             int MM = Integer.parseInt(yyyyMM.substring(4));

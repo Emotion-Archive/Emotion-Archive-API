@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * 감정보관소 API
+ */
 @RestController
 @RequestMapping(value = "/archive")
 public class EmotionArchiveController extends LoggerUtils {

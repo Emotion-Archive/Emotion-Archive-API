@@ -25,13 +25,10 @@ public class AcctRegSave {
     @Column(name = "ARCHIVE_TYPE")
     private String archiveType;
 
-    @Column(name = "EMOTION")
-    private String emotion;
-
     @Column(name = "COUNT")
     private int count;
 
-    @Column(name = "REG_DT")
-    private String regDt;
+    @Column(name = "REG_MONTH")
+    private String regMonth;
 
 }

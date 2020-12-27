@@ -40,8 +40,13 @@ public interface EmotionArchiveService {
     String getMemoByArchiveType(Long userId, String type);
 
     /**
-     * n일 간의 데이터 삭제
+     * 등록 후 n일 지난 불 보관소 데이터 삭제 (DeleteYN = Y)
      */
-    int deleteAllMemo(Long userId, String archiveType, int deleteDay);
+    Long deleteAllMemo(int deleteDay);
+
+    /**
+     * 실제 데이터 삭제 (DeleteYN = Y 인 건 디비에서 제거)
+     */
+    boolean deleteAllReal();
 
 }

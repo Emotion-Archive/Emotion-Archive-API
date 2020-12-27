@@ -135,7 +135,7 @@ public class EmotionArchiveServiceImpl extends LoggerUtils implements EmotionArc
     @Override
     public String getMemoByDateOfMonth(Long userId, String yyyyMM) {
         String startDt = yyyyMM + "01 0000";
-        String endDt = StaticHelper.getEndOrMonth(yyyyMM) + " 2359";
+        String endDt = StaticHelper.getEndOfMonth(yyyyMM) + " 2359";
 
         List<EmotionArchive> dataList = emotionArchiveRepository.findAllByMonth(userId, startDt, endDt);
 
@@ -177,23 +177,37 @@ public class EmotionArchiveServiceImpl extends LoggerUtils implements EmotionArc
     }
 
     @Override
-    public int deleteAllMemo(Long userId, String archiveType, int deleteDay) {
-        String compareDt = StaticHelper.getTimeStrByFormat("yyyyMMdd", deleteDay, Calendar.DATE);
+    public Long deleteAllMemo(int deleteDay) {
+        Long deleteCount = 0l;
 
-        List<EmotionArchive> dataList = emotionArchiveRepository.findAllByDate(userId, archiveType, compareDt);
+        String compareDt = StaticHelper.getTimeStrByFormat("yyyyMMdd", deleteDay, Calendar.DATE) + " 0000";
+
+        List<EmotionArchive> dataList = emotionArchiveRepository.findAllByDate(ConstValue.ARCHIVE_FIRE, compareDt);
 
         if (!ObjectUtils.isEmpty(dataList)) {
             for (EmotionArchive emotionArchive : dataList) {
                 emotionArchive.setDelYn("Y");
                 emotionArchive.setModDt(StaticHelper.getNowTimeStrByFormat("yyyyMMdd HHmm"));
+                deleteCount++;
             }
 
             emotionArchiveRepository.saveAll(dataList);
 
-            logger.info("deleteAllMemo userId = " + userId + ", archiveType = " + archiveType + ", count = " + dataList.size());
+            logger.info("deleteAllMemo Fire-Archive, count = " + dataList.size());
         }
 
-        return dataList.size();
+        return deleteCount;
+    }
+
+    @Override
+    public boolean deleteAllReal() {
+        try {
+            emotionArchiveRepository.deleteAllByDelYn("Y");
+            return true;
+        } catch (Exception e) {
+            logger.error("deleteAllReal", e);
+            return false;
+        }
     }
 
 }

@@ -2,6 +2,7 @@ package com.emotion.archive.model.repository;
 
 import com.emotion.archive.model.domain.EmotionArchive;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
 import javax.transaction.Transactional;
@@ -22,7 +23,11 @@ public interface EmotionArchiveRepository extends JpaRepository<EmotionArchive, 
     List<EmotionArchive> findAllByMonth(Long userId, String startDt, String endDt);
 
     @Transactional
-    @Query("SELECT e FROM EmotionArchive e WHERE e.user.id = ?1 AND e.type = ?2 AND e.delYn = 'N' AND e.regDt <= ?3 ")
-    List<EmotionArchive> findAllByDate(Long userId, String type, String date);
+    @Query("SELECT e FROM EmotionArchive e WHERE e.type = ?2 AND e.delYn = 'N' AND e.regDt < ?3 ")
+    List<EmotionArchive> findAllByDate(String type, String date);
+
+    @Transactional
+    @Modifying
+    void deleteAllByDelYn(String delYn);
 
 }
