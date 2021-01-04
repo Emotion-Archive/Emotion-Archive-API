@@ -58,9 +58,9 @@ public class StatisticsServiceImpl extends LoggerUtils implements StatisticsServ
             }
         }
 
-        statistics.put(ConstValue.ARCHIVE_TREE, treeCount);
-        statistics.put(ConstValue.ARCHIVE_FIRE, fireCount);
-        statistics.put(ConstValue.ARCHIVE_MOON, moonCount);
+        statistics.put("tree", treeCount);
+        statistics.put("fire", fireCount);
+        statistics.put("moon", moonCount);
 
         return statistics.toJSONString();
     }
